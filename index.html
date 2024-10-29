@@ -100,11 +100,12 @@
         <div class="services-list">
           <div>
             <i class="fa-solid fa-code"></i>
-            <h2>Web Design</h2>
+            <h2>Web Developer</h2>
             <p>
-              Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales
-              sagittis magna. Sed consequat, leo eget bibendum sodales, augue
-              velit cursus nunc
+              Development of custom web applications and responsive websites
+              using Next.js, Node.js, MongoDB, and React. Focus on creating
+              engaging user interfaces and efficient backend integration for
+              optimal performance and user experience.
             </p>
             <a href="#">Learn more</a>
           </div>
@@ -112,9 +113,10 @@
             <i class="fa-solid fa-crop-simple"></i>
             <h2>UI/UX</h2>
             <p>
-              Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales
-              sagittis magna. Sed consequat, leo eget bibendum sodales, augue
-              velit cursus nunc
+              Designing intuitive user interfaces and enhancing user experiences
+              through user-centered design principles. Utilizing tools like
+              Adobe XD and Figma to create wireframes, prototypes, and visual
+              designs that align with brand identity and user needs.
             </p>
             <a href="#">Learn more</a>
           </div>
@@ -122,8 +124,10 @@
             <i class="fa-brands fa-app-store"></i>
             <h2>App Design</h2>
             <p>
-              Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales
-              sagittis magna. Sed consequat, leo eget bibendum sodales.
+              Creating engaging and user-friendly mobile applications that
+              prioritize usability and aesthetic appeal. Employing design
+              frameworks and guidelines to ensure seamless navigation and an
+              enjoyable user experience across various devices.
             </p>
             <a href="#">Learn more</a>
           </div>
@@ -206,6 +210,7 @@
               ></textarea>
               <button type="submit" class="btn btn2">Submit</button>
             </form>
+            <span id="msg"></span>
           </div>
         </div>
       </div>
@@ -243,11 +248,18 @@
       const scriptURL =
         "https://script.google.com/macros/s/AKfycbxvEXKMuOLviL5JIiOYcuuRUnX0HLUw6GSpEDKu9Fl8U6CQAeZVnYFZ0aqkLvuzzJgx/exec";
       const form = document.forms["submit-to-google-sheet"];
+      const msg = document.getElementById("msg");
 
       form.addEventListener("submit", (e) => {
         e.preventDefault();
         fetch(scriptURL, { method: "POST", body: new FormData(form) })
-          .then((response) => console.log("Success!", response))
+          .then((response) => {
+            msg.innerHTML = "Message sent successfully!";
+            setTimeout(function () {
+              msg.innerHTML = "";
+            }, 3000);
+            form.reset();
+          })
           .catch((error) => console.error("Error!", error.message));
       });
     </script>
