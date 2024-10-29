@@ -143,7 +143,9 @@
                 A web app for food lovers to browse ingredients and explore
                 flavor profiles.
               </p>
-              <a href="#"><i class="fa-solid fa-pepper-hot"></i></a>
+              <a href="https://flavion.vercel.app/"
+                ><i class="fa-solid fa-pepper-hot"></i
+              ></a>
             </div>
           </div>
           <div class="work">
@@ -189,7 +191,7 @@
             >
           </div>
           <div class="contact-right">
-            <form>
+            <form name="submit-to-google-sheet">
               <input type="text" name="Name" placeholder="Your Name" required />
               <input
                 type="text"
@@ -236,6 +238,18 @@
       function closemenu() {
         sidemenu.style.right = "-200px";
       }
+    </script>
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbxvEXKMuOLviL5JIiOYcuuRUnX0HLUw6GSpEDKu9Fl8U6CQAeZVnYFZ0aqkLvuzzJgx/exec";
+      const form = document.forms["submit-to-google-sheet"];
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) => console.log("Success!", response))
+          .catch((error) => console.error("Error!", error.message));
+      });
     </script>
   </body>
 </html>
